@@ -1,0 +1,10 @@
+/all
+/logs
+/**/target/
+/**/.settings/
+/**/.idea/
+/**/.svn
+/**/.classpath
+/**/.project
+/**/*.iml
+**/MANIFEST.MF

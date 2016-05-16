@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mars.db.dao.YunMemberMapper" >
+  <resultMap id="BaseResultMap" type="com.mars.db.bean.YunMember" >
+    <id column="member_seq" property="memberSeq" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="phone_no" property="phoneNo" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="TINYINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="modified_date" property="modifiedDate" jdbcType="TIMESTAMP" />
+    <result column="last_view_date" property="lastViewDate" jdbcType="TIMESTAMP" />
+    <result column="weixin_openid" property="weixinOpenid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    member_seq, name, sex, phone_no, role, address, modified_date, last_view_date, weixin_openid, 
+    status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yun_member
+    where member_seq = #{memberSeq,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yun_member
+    where member_seq = #{memberSeq,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mars.db.bean.YunMember" >
+    insert into yun_member (member_seq, name, sex, 
+      phone_no, role, address, 
+      modified_date, last_view_date, weixin_openid, 
+      status)
+    values (#{memberSeq,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, 
+      #{phoneNo,jdbcType=VARCHAR}, #{role,jdbcType=TINYINT}, #{address,jdbcType=VARCHAR}, 
+      #{modifiedDate,jdbcType=TIMESTAMP}, #{lastViewDate,jdbcType=TIMESTAMP}, #{weixinOpenid,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mars.db.bean.YunMember" >
+    insert into yun_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberSeq != null" >
+        member_seq,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="phoneNo != null" >
+        phone_no,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="modifiedDate != null" >
+        modified_date,
+      </if>
+      <if test="lastViewDate != null" >
+        last_view_date,
+      </if>
+      <if test="weixinOpenid != null" >
+        weixin_openid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberSeq != null" >
+        #{memberSeq,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="phoneNo != null" >
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=TINYINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedDate != null" >
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastViewDate != null" >
+        #{lastViewDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weixinOpenid != null" >
+        #{weixinOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mars.db.bean.YunMember" >
+    update yun_member
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="phoneNo != null" >
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=TINYINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedDate != null" >
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastViewDate != null" >
+        last_view_date = #{lastViewDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weixinOpenid != null" >
+        weixin_openid = #{weixinOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where member_seq = #{memberSeq,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mars.db.bean.YunMember" >
+    update yun_member
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      role = #{role,jdbcType=TINYINT},
+      address = #{address,jdbcType=VARCHAR},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      last_view_date = #{lastViewDate,jdbcType=TIMESTAMP},
+      weixin_openid = #{weixinOpenid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where member_seq = #{memberSeq,jdbcType=INTEGER}
+  </update>
+</mapper>

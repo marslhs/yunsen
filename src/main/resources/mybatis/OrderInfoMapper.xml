@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mars.db.dao.OrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mars.db.bean.OrderInfo" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="member_seq" property="memberSeq" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="delivery_date" property="deliveryDate" jdbcType="TIMESTAMP" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="SMALLINT" />
+    <result column="order_date" property="orderDate" jdbcType="TIMESTAMP" />
+    <result column="delivery_seq" property="deliverySeq" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, member_seq, remark, delivery_date, address, product_id, num, order_date, 
+    delivery_seq, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_info
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mars.db.bean.OrderInfo" >
+    insert into order_info (order_id, member_seq, remark, 
+      delivery_date, address, product_id, 
+      num, order_date, delivery_seq, 
+      status)
+    values (#{orderId,jdbcType=INTEGER}, #{memberSeq,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{deliveryDate,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
+      #{num,jdbcType=SMALLINT}, #{orderDate,jdbcType=TIMESTAMP}, #{deliverySeq,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mars.db.bean.OrderInfo" >
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="memberSeq != null" >
+        member_seq,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="deliveryDate != null" >
+        delivery_date,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="orderDate != null" >
+        order_date,
+      </if>
+      <if test="deliverySeq != null" >
+        delivery_seq,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="memberSeq != null" >
+        #{memberSeq,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryDate != null" >
+        #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=SMALLINT},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliverySeq != null" >
+        #{deliverySeq,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mars.db.bean.OrderInfo" >
+    update order_info
+    <set >
+      <if test="memberSeq != null" >
+        member_seq = #{memberSeq,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryDate != null" >
+        delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=SMALLINT},
+      </if>
+      <if test="orderDate != null" >
+        order_date = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliverySeq != null" >
+        delivery_seq = #{deliverySeq,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mars.db.bean.OrderInfo" >
+    update order_info
+    set member_seq = #{memberSeq,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      address = #{address,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      num = #{num,jdbcType=SMALLINT},
+      order_date = #{orderDate,jdbcType=TIMESTAMP},
+      delivery_seq = #{deliverySeq,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>
