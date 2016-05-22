@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.mars.common.control.global.constant.HttpMethodEnum;
-import com.mars.common.control.global.constant.WeixinConst;
 import com.mars.common.control.global.impl.GlobalConfig;
+import com.mars.common.global.constant.HttpMethodEnum;
+import com.mars.common.global.constant.WeixinConst;
 /**
  * http方法的调用类。 
  * @author hosen.lhs

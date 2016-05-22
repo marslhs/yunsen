@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mars.common.control.global.constant.WeixinConst;
+import com.mars.common.global.constant.WeixinConst;
 
 
 public class WeixinUtil {

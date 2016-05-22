@@ -1,4 +1,4 @@
-package com.mars.common.control.global.constant;
+package com.mars.common.global.constant;
 
 public interface WeixinConst {
     // access_token超时，请检查access_token的有效期，请参考基础支持-获取access_token中，对access_token的详细机制说明

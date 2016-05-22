@@ -74,12 +74,13 @@ public class YunsenMsgConsumer extends WechatSupport {
     @Override
     protected void subscribe() {
         String fromUser = wechatRequest.getFromUserName();
-        yunMemberService.addYunMember(fromUser);
+        this.yunMemberService.addYunMember(fromUser);
     }
 
     @Override
     protected void unSubscribe() {
-        // TODO Auto-generated method stub
+        String fromUser = wechatRequest.getFromUserName();
+        this.yunMemberService.unsubscribe(fromUser);
 
     }
 

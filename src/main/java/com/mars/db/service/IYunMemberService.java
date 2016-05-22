@@ -10,4 +10,6 @@ public interface IYunMemberService {
     YunMember getUserByOpenId(String openId);
     
     void addYunMember(String openId);
+    
+    void unsubscribe(String openId);
 }

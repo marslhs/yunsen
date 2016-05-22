@@ -1,7 +1,5 @@
 package com.mars.common.control;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -46,13 +44,12 @@ public class WexinControl {
     
     @RequestMapping("/home")
     public void home(HttpServletRequest request, HttpServletResponse response) {
-
-        YunsenMsgConsumer myWechat = new YunsenMsgConsumer(request);
-        String result = myWechat.execute();
         try {
+            YunsenMsgConsumer myWechat = new YunsenMsgConsumer(request);
+            String result = myWechat.execute();
             response.getOutputStream().write(result.getBytes());
-        } catch (IOException e) {
-            logger.error("exception when output :" , e);
+        } catch (Exception e) {
+            logger.error("exception when dispatch message :" , e);
         }
     
     }

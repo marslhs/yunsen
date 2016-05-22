@@ -1,4 +1,4 @@
-package com.mars.common.control.global.constant;
+package com.mars.common.global.constant;
 
 
 public enum HttpMethodEnum {

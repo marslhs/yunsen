@@ -9,8 +9,9 @@ import org.sword.wechat4j.token.TokenProxy;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.mars.common.control.global.constant.GlobalConst;
 import com.mars.common.control.utils.HttpInvoker;
+import com.mars.common.global.constant.GlobalConst;
+import com.mars.common.global.constant.MemberConst.Status;
 import com.mars.db.bean.YunMember;
 import com.mars.db.dao.YunMemberMapper;
 import com.mars.db.service.IYunMemberService;
@@ -42,6 +43,14 @@ public class YunMemberServiceImpl implements IYunMemberService {
         member.setSex(resultJson.getByte("sex"));
         member.setWeixinOpenid(openId);
         member.setModifiedDate(new Date());
+        member.setStatus(Status.Subscribe.getCode());
         this.yumMemberDAO.insert(member);
+    }
+    
+    public void unsubscribe(String openId){
+        YunMember member = new YunMember();
+        member.setWeixinOpenid(openId);
+        member.setStatus(Status.Unsubscribe.getCode());
+        yumMemberDAO.updateByOpenidSelective(member);
     }
 }

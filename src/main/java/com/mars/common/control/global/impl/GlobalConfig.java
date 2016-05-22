@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.mars.common.control.global.constant.GlobalConst;
-import com.mars.common.control.global.constant.WeixinConst;
 import com.mars.common.control.utils.HttpInvoker;
 import com.mars.common.control.utils.WeixinUtil;
+import com.mars.common.global.constant.GlobalConst;
+import com.mars.common.global.constant.WeixinConst;
 
 public class GlobalConfig {
 

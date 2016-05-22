@@ -149,6 +149,38 @@
     where member_seq = #{memberSeq,jdbcType=INTEGER}
   </update>
   
+  
+    <update id="updateByOpenidSelective" parameterType="com.mars.db.bean.YunMember" >
+    update yun_member
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="phoneNo != null" >
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=TINYINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedDate != null" >
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastViewDate != null" >
+        last_view_date = #{lastViewDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where weixin_openid = #{weixinOpenid,jdbcType=VARCHAR}
+  </update>
+  
   <update id="updateByPrimaryKey" parameterType="com.mars.db.bean.YunMember" >
     update yun_member
     set name = #{name,jdbcType=VARCHAR},

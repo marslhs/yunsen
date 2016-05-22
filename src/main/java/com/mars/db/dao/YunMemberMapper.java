@@ -16,4 +16,6 @@ public interface YunMemberMapper {
     int updateByPrimaryKeySelective(YunMember record);
 
     int updateByPrimaryKey(YunMember record);
+    
+    int updateByOpenidSelective(YunMember record);
 }
