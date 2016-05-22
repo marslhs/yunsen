@@ -16,8 +16,14 @@ public class YunProductServiceImpl implements IYunProductService {
     @Resource  
     private YunProductMapper yumProductDAO; 
     
+    List<YunProduct> products = null;
     
     public List<YunProduct> getAllProduct() {  
-        return this.yumProductDAO.selectAllProducts();
+        if(products == null || products.isEmpty()){
+            synchronized (this) {
+                products = this.yumProductDAO.selectAllProducts();
+            }
+        }
+        return products;
     }
 }

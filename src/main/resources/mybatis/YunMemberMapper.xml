@@ -23,10 +23,19 @@
     from yun_member
     where member_seq = #{memberSeq,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectByOpenId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from yun_member
+    where weixin_openid = #{weixinOpenid,jdbcType=VARCHAR}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from yun_member
     where member_seq = #{memberSeq,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.mars.db.bean.YunMember" >
     insert into yun_member (member_seq, name, sex, 
       phone_no, role, address, 
@@ -37,6 +46,7 @@
       #{modifiedDate,jdbcType=TIMESTAMP}, #{lastViewDate,jdbcType=TIMESTAMP}, #{weixinOpenid,jdbcType=VARCHAR}, 
       #{status,jdbcType=TINYINT})
   </insert>
+  
   <insert id="insertSelective" parameterType="com.mars.db.bean.YunMember" >
     insert into yun_member
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -104,6 +114,7 @@
       </if>
     </trim>
   </insert>
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.mars.db.bean.YunMember" >
     update yun_member
     <set >
@@ -137,6 +148,7 @@
     </set>
     where member_seq = #{memberSeq,jdbcType=INTEGER}
   </update>
+  
   <update id="updateByPrimaryKey" parameterType="com.mars.db.bean.YunMember" >
     update yun_member
     set name = #{name,jdbcType=VARCHAR},

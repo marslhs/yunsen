@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.alibaba.fastjson.JSON;
 import com.mars.db.bean.YunMember;
 import com.mars.db.bean.YunProduct;
+import com.mars.db.dao.YunMemberMapper;
 import com.mars.db.service.IYunMemberService;
 import com.mars.db.service.IYunProductService;
 
@@ -25,8 +26,11 @@ public class TestMyBatis {
 	@Resource
 	private IYunMemberService yunMemberService = null;
 	
+	@Resource  
+    private YunMemberMapper yumMemberDAO;
+	
 	@Resource
-	private IYunProductService yunProductService = null;
+	private IYunProductService productService = null;
 //	@Before
 //	public void before() {
 //		ac = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -34,16 +38,25 @@ public class TestMyBatis {
 //	}
 
 	@Test
+    public void testdao() {
+        YunMember user = yumMemberDAO.selectByOpenId("test12");
+        // System.out.println(user.getUserName());
+        // logger.info("鍊硷細"+user.getUserName());
+        logger.info("result:"+JSON.toJSONString(user));
+    }
+    
+	
+	@Test
 	public void test1() {
-	    YunMember user = yunMemberService.getUserById(1);
+	    YunMember user = yunMemberService.getUserByOpenId("test12");
 		// System.out.println(user.getUserName());
 		// logger.info("鍊硷細"+user.getUserName());
-		logger.info(JSON.toJSONString(user));
+		logger.info("result:"+JSON.toJSONString(user));
 	}
 	
 	@Test
 	public void test2() {
-	    List<YunProduct> products = yunProductService.getAllProduct();
+	    List<YunProduct> products = productService.getAllProduct();
 		// System.out.println(user.getUserName());
 		// logger.info("鍊硷細"+user.getUserName());
 		logger.info(JSON.toJSONString(products));

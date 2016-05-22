@@ -10,6 +10,8 @@ public interface YunMemberMapper {
     int insertSelective(YunMember record);
 
     YunMember selectByPrimaryKey(Integer memberSeq);
+    
+    YunMember selectByOpenId(String weixinOpenid);
 
     int updateByPrimaryKeySelective(YunMember record);
 

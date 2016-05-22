@@ -1,5 +1,7 @@
 package com.mars.common.control;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mars.common.control.utils.WeixinUtil;
+import com.mars.common.msg.consumer.YunsenMsgConsumer;
 
 @Controller
 public class WexinControl {
@@ -39,5 +42,18 @@ public class WexinControl {
          mv.addObject("message", "Hello World!");  
          mv.setViewName("dingshui");  
          return mv;  
+    }
+    
+    @RequestMapping("/home")
+    public void home(HttpServletRequest request, HttpServletResponse response) {
+
+        YunsenMsgConsumer myWechat = new YunsenMsgConsumer(request);
+        String result = myWechat.execute();
+        try {
+            response.getOutputStream().write(result.getBytes());
+        } catch (IOException e) {
+            logger.error("exception when output :" , e);
+        }
+    
     }
 }

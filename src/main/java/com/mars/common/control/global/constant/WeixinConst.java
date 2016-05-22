@@ -11,4 +11,5 @@ public interface WeixinConst {
     //jsticket key 
     String JsApiTicketKey = "ticket";
     String ExpiredInKey   = "expires_in";
+    
 }
