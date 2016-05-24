@@ -1,20 +1,26 @@
 package com.mars.common.msg.consumer;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 import org.sword.wechat4j.WechatSupport;
 
 import com.mars.db.service.IYunMemberService;
 
-
 public class YunsenMsgConsumer extends WechatSupport {
 
-    @Resource
     private IYunMemberService yunMemberService = null;
+
     
+    public void setYunMemberService(IYunMemberService yunMemberService) {
+        this.yunMemberService = yunMemberService;
+    }
+
     public YunsenMsgConsumer(HttpServletRequest request) {
         super(request);
+        WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
+        yunMemberService = (IYunMemberService)wac.getBean("yunMemberService");
     }
 
     @Override

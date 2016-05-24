@@ -37,14 +37,22 @@ public class YunMemberServiceImpl implements IYunMemberService {
         String result = HttpInvoker.get(url);
         JSONObject resultJson = JSON.parseObject(result);
         
-        YunMember member = new YunMember();
-        member.setLastViewDate(new Date());
-        member.setName(resultJson.getString("nickname"));
-        member.setSex(resultJson.getByte("sex"));
-        member.setWeixinOpenid(openId);
-        member.setModifiedDate(new Date());
-        member.setStatus(Status.Subscribe.getCode());
-        this.yumMemberDAO.insert(member);
+        YunMember existmember = this.yumMemberDAO.selectByOpenId(openId);
+        if(existmember == null){
+            YunMember member = new YunMember();
+            member.setLastViewDate(new Date());
+            member.setName(resultJson.getString("nickname"));
+            member.setSex(resultJson.getByte("sex"));
+            member.setWeixinOpenid(openId);
+            member.setModifiedDate(new Date());
+            member.setStatus(Status.Subscribe.getCode());
+            this.yumMemberDAO.insert(member);
+        }else{
+            YunMember updatemember = new YunMember();
+            updatemember.setWeixinOpenid(openId);
+            updatemember.setStatus(Status.Subscribe.getCode());
+            yumMemberDAO.updateByOpenidSelective(updatemember);
+        }
     }
     
     public void unsubscribe(String openId){
