@@ -4,11 +4,11 @@
 <head>  
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script type="text/javascript" src="WEB-INF/js/dingshui.js"></script>
+<script type="text/javascript" src="js/dingshui.js"></script>
 <title>订水</title>  
 </head>  
 <body>  
 
-${message}  
+${signature}  
 </body>  
 </html>
