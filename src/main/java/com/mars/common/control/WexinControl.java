@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mars.common.control.global.impl.SignUtils;
 import com.mars.common.control.utils.WeixinUtil;
 import com.mars.common.msg.consumer.YunsenMsgConsumer;
 
 @Controller
 public class WexinControl {
-    
+
     public static final Logger logger = LoggerFactory.getLogger(WexinControl.class);
 
-    public static final String token = "HosenIsRight";
+    public static final String token  = "HosenIsRight";
 
     @ResponseBody
     @RequestMapping("/verify")
@@ -33,15 +34,14 @@ public class WexinControl {
         }
         return 0;
     }
-    
+
     @RequestMapping("/dingshui")
     public ModelAndView orderWater(HttpServletRequest request, HttpServletResponse response) {
-    	 ModelAndView mv = new ModelAndView();  
-         mv.addObject("message", "Hello World!");  
-         mv.setViewName("dingshui");  
-         return mv;  
+        ModelAndView mv = SignUtils.signModelAndView(request);
+        mv.setViewName("dingshui");
+        return mv;
     }
-    
+
     @RequestMapping("/home")
     public void home(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -49,8 +49,8 @@ public class WexinControl {
             String result = myWechat.execute();
             response.getOutputStream().write(result.getBytes());
         } catch (Exception e) {
-            logger.error("exception when dispatch message :" , e);
+            logger.error("exception when dispatch message :", e);
         }
-    
+
     }
 }
