@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="GBK"?>
-<project name="weixincommon" default="copyfile" basedir="." >
+<project name="weixincommon" default="copywar" basedir="." >
 	<property name="tomcat.war.dir" value="D:/Dev_tools/apache-tomcat-7.0.57/webapps" />
 	<property name="target.dir" value="${basedir}/target" />
 	<property name="project.name" value="yunsen-1.0.0" />
 	<property name="war.name" value="yunsen-1.0.0.war" />
 	
    <target name="copywar">
+      <delete dir="${tomcat.war.dir}/${project.name}" />
+      <delete dir="${tomcat.war.dir}/yunsen" />
+      <delete file="${tomcat.war.dir}/${war.name}" />
       <copy file="${target.dir}/${war.name}" todir="${tomcat.war.dir}" overwrite="true" />
    </target>
 	

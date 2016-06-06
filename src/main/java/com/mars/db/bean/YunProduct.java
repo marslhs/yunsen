@@ -1,5 +1,7 @@
 package com.mars.db.bean;
 
+import com.alibaba.fastjson.JSON;
+
 public class YunProduct {
     private Integer productId;
 
@@ -39,5 +41,9 @@ public class YunProduct {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+    
+    public String toString(){
+        return JSON.toJSONString(this);
     }
 }

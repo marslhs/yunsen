@@ -1,10 +1,16 @@
 package com.mars.common.control.utils;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.sword.lang.JaxbParser;
+import org.sword.lang.StreamUtils;
+import org.sword.wechat4j.request.WechatRequest;
 public class Tools {
     private static Logger logger = LoggerFactory.getLogger(Tools.class);
     
@@ -30,6 +36,19 @@ public class Tools {
             logger.warn("sha1Hex-> meet exception when sha1Hex", e);
         }
         return "";
+    }
+    
+    public static WechatRequest getWeinParameter(HttpServletRequest request){
+        WechatRequest wechatRequest = null;
+        try {
+             String postDataStr = StreamUtils.streamToString(request.getInputStream());
+             JaxbParser jaxbParser = new JaxbParser(WechatRequest.class);
+             wechatRequest = (WechatRequest)jaxbParser.toObj(postDataStr);
+        } catch (IOException e) {
+            logger.error("post data deal failed!");
+            e.printStackTrace();
+        }
+        return wechatRequest;
     }
     
 }
